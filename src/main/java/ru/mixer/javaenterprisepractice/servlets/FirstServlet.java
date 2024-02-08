@@ -14,22 +14,35 @@ public class FirstServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Cart cart = (Cart)session.getAttribute("cart");
+
+        String user = (String) session.getAttribute("current_user");
+
+        if (user == null){
+            // show registration page
+        }else {
+            // forward to home page
+        }
+
+
+
+
+        /*Cart cart = (Cart)session.getAttribute("cart");
 
         String name = request.getParameter("name");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         if (cart == null) {
             cart = new Cart();
+            cart.setName(name);
+            cart.setQuantity(quantity);
         }
-        cart.setName(name);
-        cart.setQuantity(quantity);
-        session.setAttribute("cart", cart);
+
+        session.setAttribute("cart", cart);*/
 
 
         //PrintWriter pw = response.getWriter();
         //pw.println(cart.toString());
-        // pw.close();
+        //pw.close();
 
         getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request,response);
 
